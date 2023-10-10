@@ -2,9 +2,16 @@ const notepadEl = document.getElementById("notepad");
 const saveContBtnEl = document.getElementById("saveContentBtn");
 const pEl = document.querySelector("p");
 
+let currContSaveProperty;
+
 notepadEl.value = "";
 
-saveContBtnEl.addEventListener("click", function () {
+notepadEl.addEventListener("keydown", () => {
+    currContSaveProperty = 0;
+    console.log(currContSaveProperty)
+});
+
+saveContBtnEl.addEventListener("click", () => {
     const notepadContent = notepadEl.value;
     const blob = new Blob([notepadContent], {
         type: "text/plain"
@@ -21,5 +28,15 @@ saveContBtnEl.addEventListener("click", function () {
         document.body.appendChild(aEl);
         aEl.click();
         document.body.removeChild(aEl);
+
+        currContSaveProperty = 1;
+    }
+});
+
+addEventListener("beforeunload", e => {
+    console.log(currContSaveProperty)
+    if (notepadEl.value.length > 0 &&
+        currContSaveProperty === 0) {
+        e.preventDefault();
     }
 });
