@@ -39,6 +39,7 @@ h1 {
     font-size: 20px;
     width: var(--notepad-width);
     height: calc(var(--notepad-height) - var(--btn-width) - 5px);
+    padding: 5px;
     resize: none;
     border: none;
     border-radius: 5px;
